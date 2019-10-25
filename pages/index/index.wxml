@@ -1,0 +1,38 @@
+<view class="start" bindtap='start' wx:if="{{currentid==0}}">开始使用</view>
+<form wx:if="{{currentid==1}}" bindsubmit="nodenum">
+  <input placeholder="请输入节点个数" name="num"></input>
+  <button form-type='submit'>确认</button>
+</form>
+
+
+<form wx:if="{{currentid==2}}" bindsubmit="calculate">
+  
+  <button bindtap="add">增加元件</button>
+  <form wx:if="{{showadd}}" bindsubmit="disshowadd">
+     <radio-group name='id'>
+       <radio value="0">电阻</radio>
+       <radio value='1'>电压源</radio>
+       <radio value='2'>电流源</radio>
+     </radio-group>
+     <radio-group name='nodestart'>
+       <radio wx:for="{{nodenum}}" value="{{index}}" wx:key>节点{{index}}</radio>
+     </radio-group>
+     <radio-group name='nodeend'>
+       <radio wx:for="{{nodenum}}" value="{{index}}" wx:key>节点{{index}}</radio>
+     </radio-group>
+     <input placeholder="请输入参数" name="num"></input>
+     <button form-type="submit">确认</button>
+  </form>
+  <view wx:for="{{itemlist}}" wx:key>
+    <view wx:if="{{item.id==0}}">电阻</view>
+    <view wx:elif="{{item.id==1}}">电压源</view>
+    <view wx:elif="{{item.id==2}}">电流源</view>
+    <view>参数值:{{item.num}}</view>
+    <view>起始节点:{{item.nodestart}}</view>
+    <view>结束节点:{{item.nodeend}}</view>
+  </view>
+  <button form-type="submit">开始计算</button>
+</form>
+<view wx:if="{{currentid==3}}">
+  <view wx:for="{{result}}" wx:key>{{item}}</view>
+</view>
