@@ -1,21 +1,412 @@
-/**index.wxss**/
-.userinfo {
+.startbox{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+  background-color:rgb(167, 255, 255);
+}
+.start{
+   background-color:rgb(0, 162, 255);
+   height:300rpx;
+   width:300rpx;
+   border-radius:500rpx;
+   font-size:50rpx;
+   justify-content: center;
+   text-align:center;
+   line-height:300rpx;
+   color:aquamarine;
+   box-shadow:rgb(0, 162, 255) 0rpx 0rpx 100rpx 0rpx;
+}
+.nodebox{
+
+}
+.nodenum{
+  height:100rpx;
+  width:400rpx;
+  font-size:35rpx;
+  text-align:center;
+  line-height:100rpx;
+  border-radius:6rpx;
+  background-color:rgb(0, 162, 255);
+  box-shadow:rgb(0, 162, 255) 0rpx 0rpx 30rpx 0rpx;
+  color:aquamarine;
+}
+.nodenum_btn{
+  margin-top:200rpx;
+  height:200rpx;
+  width:200rpx;
+  border-radius:200rpx;
+  text-align:center;
+  line-height:200rpx;
+  font-size:50rpx;
+  color:aquamarine;
+  background-color:rgb(0, 162, 255);
+  box-shadow:rgb(0, 162, 255) 0rpx 0rpx 50rpx 0rpx;
+}
+.additembox{
+  display:flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items:center;
+  background-color:rgb(167, 255, 255);
+}
+.additem_btnbox{
+  margin-top:200rpx;
+  height:50px;
+  width:250px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.additem_btn{
+  height:50px;
+  width:110px;
+  border-radius:5px;
+  background-color:rgb(0, 162, 255);
+  box-shadow:rgb(0, 162, 255) 0rpx 0rpx 50rpx 0rpx;
+  font-size:15px;
+  color:aquamarine;
+  text-align: center;
+  line-height:50px;
+}
+.itembox{
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
 }
-
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.singleitembox{
+  margin-left:5px;
+  margin-top:5px;
+  height:200rpx;
+  background-color:rgb(185, 247, 255);
+  border-radius:3px;
+  box-shadow:rgb(185, 247, 255) 0rpx 0rpx 50rpx 0rpx;
 }
-
-.userinfo-nickname {
-  color: #aaa;
+.sibox_title{
+   height: 60rpx;
+   width:100%;
+   font-size:50rpx;
+   line-height: 70rpx;
+   color:rgb(10, 199, 199);
+   margin-left:10px;
 }
-
-.usermotto {
-  margin-top: 200px;
+.sibox_num{
+  height:80rpx;
+  width:100%;
+  font-size:60rpx;
+  text-align:center;
+  line-height:80rpx;
+  color:rgb(10, 199, 199);
+}
+.sibox_nodeidbox{
+  height:60rpx;
+  width:100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.sibox_nodeid{
+  height:50rpx;
+  width:50%;
+  font-size:35rpx;
+  text-align:center;
+  line-height:50rpx;
+  color:rgb(10, 199, 199);
+}
+.startcal_btn{
+  position:fixed;
+  right:10px;
+  bottom:10px;
+  height:60px;
+  width:60px;
+  border-radius:60px;
+  background-color:rgb(0, 162, 255);
+  box-shadow:rgb(0, 162, 255) 0rpx 0rpx 50rpx 0rpx;
+  font-size:12px;
+  color:aquamarine;
+  text-align: center;
+  line-height:60px;
+}
+.jumpbox{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+  position: fixed;
+  top:0;
+  left:0;
+  z-index: 10;
+  background-color:aquamarine;
+}
+.additemboxlittle{
+  height:420px;
+  width:250px;
+  display:flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items:center;
+  background-color:rgb(152, 255, 255);
+  box-shadow:rgb(0, 162, 255) 0rpx 0rpx 150rpx 0rpx;
+}
+.additemtitle{
+  height:40px;
+  width:250px;
+  background-color:rgb(0, 162, 255);
+  font-size:15px;
+  text-align:center;
+  line-height:40px;
+  color:aquamarine;
+  box-shadow:rgb(0, 162, 255) 0rpx 0rpx 25rpx 0rpx;
+}
+.additemtitlebox{
+  height:80px;
+  width:250px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap:wrap;
+}
+.additem{
+  height:40px;
+  width:120px;
+  margin-left:5px; 
+  font-size:15px;
+  line-height:40px;
+  align-items:center;
+  color:rgb(0, 162, 255);
+}
+.addnodebox{
+  height:200px;
+  width:250px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.addnode{
+  height:200px;
+  width:125px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.addnodetitle{
+  height:40px;
+  width:125px;
+  font-size:15px;
+  line-height:40px;
+  text-align:center;
+  background-color:rgb(0, 162, 255);
+  color:aquamarine;
+  box-shadow:rgb(0, 162, 255) 0rpx 0rpx 25rpx 0rpx;
+}
+.nodes{
+  height:40px;
+  width:105px;
+  margin-left:20px;
+  color:rgb(0, 162, 255);
+}
+.singleinput{
+  height:40px;
+  width:250px;
+  font-size:15px;
+  line-height:40px;
+  text-align: center;
+  background-color:rgb(0, 162, 255);
+  color:aquamarine;
+  box-shadow:rgb(0, 162, 255) 0rpx 0rpx 25rpx 0rpx;
+}
+.doubleinputbox{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  background-color:rgb(0, 162, 255);
+  color:aquamarine;
+  box-shadow:rgb(0, 162, 255) 0rpx 0rpx 25rpx 0rpx;
+}
+.doubleinput{
+  height:40px;
+  width:125px;
+  font-size:15px;
+  line-height:40px;
+  text-align:center;
+}
+.disadd_btnbox{
+  height:60px;
+  width:250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.disadd_btn{
+  height:30px;
+  width:100px;
+  font-size:15px;
+  line-height:30px;
+  text-align:center;
+  background-color:rgb(0, 162, 255);
+  color:aquamarine;
+  box-shadow:rgb(0, 162, 255) 0rpx 0rpx 25rpx 0rpx;
+}
+.resultsinglebox{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height:60px;
+  width:100%;
+}
+.resultsingle{
+  height:50px;
+  width:80%;
+  background-color:rgb(0, 162, 255);
+  box-shadow:rgb(0, 162, 255) 0rpx 0rpx 40rpx 0rpx;
+  border-radius:2rpx;
+  line-height:50px;
+  font-size:15px;
+  color:aquamarine;
+  padding-left:10px;
+}
+.again{
+  position:fixed;
+  right:10px;
+  bottom:10px;
+  margin-top:200rpx;
+  height:60px;
+  width:60px;
+  border-radius:60px;
+  background-color:rgb(0, 162, 255);
+  box-shadow:rgb(0, 162, 255) 0rpx 0rpx 50rpx 0rpx;
+  font-size:13px;
+  color:aquamarine;
+  text-align: center;
+  line-height:60px;
+}
+.littlecalbox{
+  height:50px;
+  width:100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  background-color:rgb(0, 162, 255);
+  box-shadow:rgb(0, 162, 255) 0rpx 0rpx 50rpx 0rpx;
+}
+.caltitle{
+  padding-right: 5px;
+  font-size:15px;
+  text-align: right;
+  line-height: 50px;
+  width:20%;
+  height:50px;
+  background-color:rgb(0, 162, 255);
+  color:aquamarine;
+}
+.calinputbox{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width:10%;
+  height:50px;
+  
+}
+.calinput{
+  width:100%;
+  height:30px;
+  font-size:15px;
+  text-align: center;
+  line-height: 30px;
+  background-color:rgb(129, 208, 253);
+  color:rgb(0, 162, 255);
+  border-radius:2px;
+}
+.t_calinput{
+  width:100%;
+  height:30px;
+  font-size:15px;
+  text-align: center;
+  line-height: 30px;
+  background-color:rgb(129, 208, 253);
+  color:rgb(0, 162, 255);
+  border-radius:2px;
+}
+.calanswerbox{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width:20%;
+  height:50px;
+  
+}
+.calanswer{
+  font-size:15px;
+  text-align: center;
+  line-height: 30px;
+  background-color:rgb(129, 208, 253);
+  color:rgb(0, 162, 255);
+  height:30px;
+  width:80%;
+  border-radius:2px;
+}
+.calicon{
+  font-size:25px;
+  text-align:center;
+  line-height: 50px;
+  width:10%;
+  height:50px;
+  background-color: rgb(0, 162, 255);
+  color:aquamarine;
+}
+.t_caltitle{
+  padding-right: 5px;
+  font-size:15px;
+  text-align: right;
+  line-height: 50px;
+  width:30%;
+  height:50px;
+  background-color:rgb(0, 162, 255);
+  color:aquamarine;
+}
+.littlecal_btn{
+  margin-top:12px;
+  height:30px;
+  width:60px;
+  font-size:12px;
+  background-color:rgb(0, 162, 255);
+  line-height: 30px;
+  text-align: center;
+  color:aquamarine;
+  box-shadow:rgb(0, 162, 255) 0rpx 0rpx 15rpx 0rpx;
+}
+.thevebox{
+  height:50px;
+  width:100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  background-color:rgb(0, 162, 255);
+  box-shadow:rgb(0, 162, 255) 0rpx 0rpx 50rpx 0rpx;
+}
+.switchtab{
+  margin-top:50px;
+  height:50px;
+  width:100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  background-color:rgb(129, 208, 253);
+  box-shadow:rgb(0, 162, 255) 0rpx 0rpx 50rpx 0rpx;
+}
+.tab{
+  height: 50px;
+  width:50%;
+  font-size:15px;
+  line-height:50px;
+  text-align:center;
+  color:aquamarine;
+}
+.blank{
+  height: 100px;
+  width:100%;
 }

@@ -1,38 +1,218 @@
-<view class="start" bindtap='start' wx:if="{{currentid==0}}">开始使用</view>
-<form wx:if="{{currentid==1}}" bindsubmit="nodenum">
-  <input placeholder="请输入节点个数" name="num"></input>
-  <button form-type='submit'>确认</button>
+<view class="startbox" wx:if="{{currentid==0}}" style="height:{{windowHeight}}px;width:{{windowWidth}}">
+  <view class="start" bindtap='start' >开始使用</view>
+</view>
+<form wx:if="{{currentid==1}}" bindsubmit="nodenum" class="startbox" style="height:{{windowHeight}}px;width:{{windowWidth}}">
+  <view></view>
+  <input class="nodenum" placeholder="请输入节点个数" placeholder-style="color:aquamarine;" name="num"></input>
+  <button class="nodenum_btn" form-type='submit'>确认</button>
 </form>
 
 
 <form wx:if="{{currentid==2}}" bindsubmit="calculate">
-  
-  <button bindtap="add">增加元件</button>
-  <form wx:if="{{showadd}}" bindsubmit="disshowadd">
-     <radio-group name='id'>
-       <radio value="0">电阻</radio>
-       <radio value='1'>电压源</radio>
-       <radio value='2'>电流源</radio>
-     </radio-group>
-     <radio-group name='nodestart'>
-       <radio wx:for="{{nodenum}}" value="{{index}}" wx:key>节点{{index}}</radio>
-     </radio-group>
-     <radio-group name='nodeend'>
-       <radio wx:for="{{nodenum}}" value="{{index}}" wx:key>节点{{index}}</radio>
-     </radio-group>
-     <input placeholder="请输入参数" name="num"></input>
-     <button form-type="submit">确认</button>
-  </form>
-  <view wx:for="{{itemlist}}" wx:key>
-    <view wx:if="{{item.id==0}}">电阻</view>
-    <view wx:elif="{{item.id==1}}">电压源</view>
-    <view wx:elif="{{item.id==2}}">电流源</view>
-    <view>参数值:{{item.num}}</view>
-    <view>起始节点:{{item.nodestart}}</view>
-    <view>结束节点:{{item.nodeend}}</view>
+<view class="additembox" style="height:{{windowHeight}}px;width:{{windowWidth}}px">
+  <view class="additem_btnbox">
+    <button bindtap="add" class="additem_btn">增加元件</button>
+    <button bindtap="add2" class="additem_btn">增加受控源</button>
   </view>
-  <button form-type="submit">开始计算</button>
+  <view wx:if="{{showadd}}" class="jumpbox" style="height:{{windowHeight}}px;width:{{windowWidth}}px">
+    <view class="additemboxlittle">
+      <form bindsubmit="disshowadd">
+        <view class="additemtitle">元件种类</view>
+        <radio-group name='id' class="additemtitlebox">
+          <radio bindtap="notcom" data-inputid="0" value="0" class="additem" checked="true">电阻</radio>
+          <radio bindtap="notcom" data-inputid="1" value='1' class="additem">无伴电压源</radio>
+          <radio bindtap="notcom" data-inputid="2" value='2' class="additem">电流源</radio>
+          <radio bindtap="iscom" value='3' class="additem">有伴电压源</radio>
+        </radio-group>
+        <view class="addnodebox">
+          <view class="addnode">
+            <view class="addnodetitle">起始节点</view>
+            <scroll-view scroll-y="true" style="height:160px;width:125px;">
+              <view style="margin-top:10px;">
+                <radio-group name='nodestart'>
+                  <radio wx:for="{{nodenum}}" value="{{index}}" wx:key class="nodes">结点{{index}}</radio>
+                </radio-group>
+              </view>
+            </scroll-view>
+          </view>
+          <view class="addnode">
+            <view class="addnodetitle">结束结点</view>
+            <scroll-view scroll-y="true" style="height:160px;width:125px;">
+              <view style="margin-top:10px;">
+                <radio-group name='nodeend'>
+                  <radio wx:for="{{nodenum}}" value="{{index}}" wx:key class="nodes">结点{{index}}</radio>
+                </radio-group>
+              </view>
+            </scroll-view>
+          </view>
+        </view>
+        <view wx:if="{{!iscom}}" >
+            <input placeholder="请输入参数Ω" placeholder-style="color:aquamarine;" name="num" class="singleinput" wx:if="{{inputid==0}}"></input>
+            <input placeholder="请输入参数V" placeholder-style="color:aquamarine;" name="num" class="singleinput" wx:elif="{{inputid==1}}"></input>
+            <input placeholder="请输入参数A" placeholder-style="color:aquamarine;" name="num" class="singleinput" wx:elif="{{inputid==2}}"></input>
+        </view>
+        <view wx:else  class="doubleinputbox">
+            <input  placeholder="请输入参数Ω" placeholder-style="color:aquamarine;" name="num1" class="doubleinput"></input>
+            <input  placeholder="请输入参数V" placeholder-style="color:aquamarine;" name="num2" class="doubleinput"></input>
+        </view>
+        <view class="disadd_btnbox">
+          <button form-type="submit" class="disadd_btn">确认</button>
+        </view>
+      </form>
+    </view>
+  </view>
+
+  <view wx:if="{{showaddk}}" class="jumpbox" style="height:{{windowHeight}}px;width:{{windowWidth}}px">
+    <view class="additemboxlittle" style="height:500px;">
+      <form bindsubmit="disshowadd">
+        <view class="additemtitle">元件种类</view>
+        <radio-group name='id' class="additemtitlebox">
+          <radio value='4' class="additem" bindtap="kong" data-hi="1">电压控电压</radio>
+          <radio value='5' class="additem" bindtap="kong" data-hi="1">电压控电流</radio>
+          <radio value='6' class="additem" bindtap="kong" data-hi="0">电流控电压</radio>
+          <radio value='7' class="additem" bindtap="kong" data-hi="0">电流控电流</radio>
+        </radio-group>
+        <view class="addnodebox" style="height:140px;">
+          <view class="addnode">
+            <view class="addnodetitle">起始节点</view>
+            <scroll-view scroll-y="true" style="height:100px;width:125px;">
+              <view style="margin-top:10px;">
+                <radio-group name='nodestart'>
+                  <radio wx:for="{{nodenum}}" value="{{index}}" wx:key class="nodes">结点{{index}}</radio>
+                </radio-group>
+              </view>
+            </scroll-view>
+          </view>
+          <view class="addnode">
+            <view class="addnodetitle">结束结点</view>
+            <scroll-view scroll-y="true" style="height:100px;width:125px;">
+              <view style="margin-top:10px;">
+                <radio-group name='nodeend'>
+                  <radio wx:for="{{nodenum}}" value="{{index}}" wx:key class="nodes">结点{{index}}</radio>
+                </radio-group>
+              </view>
+            </scroll-view>
+          </view>
+        </view>
+        <view class="addnodebox" style="height:140px;">
+          <view class="addnode">
+            <view class="addnodetitle">控制起始节点</view>
+            <scroll-view scroll-y="true" style="height:100px;width:125px;">
+              <view style="margin-top:10px;">
+                <radio-group name='knodestart'>
+                  <radio wx:for="{{nodenum}}" value="{{index}}" wx:key class="nodes">结点{{index}}</radio>
+                </radio-group>
+              </view>
+            </scroll-view>
+          </view>
+          <view class="addnode">
+            <view class="addnodetitle">控制结束结点</view>
+            <scroll-view scroll-y="true" style="height:100px;width:125px;">
+              <view style="margin-top:10px;">
+                <radio-group name='knodeend'>
+                  <radio wx:for="{{nodenum}}" value="{{index}}" wx:key class="nodes">结点{{index}}</radio>
+                </radio-group>
+              </view>
+            </scroll-view>
+          </view>
+        </view>
+        <view wx:if="{{kong}}">
+          <input placeholder="请输入参数α" placeholder-style="color:aquamarine;" name="num" class="singleinput" wx:if="{{inputid==0}}"></input>
+        </view>
+        <view wx:else  class="doubleinputbox">
+            <input  placeholder="控制支路电阻Ω" placeholder-style="color:aquamarine;" name="num1" class="doubleinput"></input>
+            <input  placeholder="请输入控制参数" placeholder-style="color:aquamarine;" name="num2" class="doubleinput"></input>
+        </view>
+        <view class="disadd_btnbox">
+          <button form-type="submit" class="disadd_btn">确认</button>
+        </view>
+      </form>
+    </view>
+  </view>
+  <scroll-view scroll-y="true" style="height:{{windowHeight-200}}px;width:{{windowWidth-50}}px;background-color:rgb(128, 248, 248);margin-top:20px;border-radius:10px;" class="itembox">
+    <view class="singleitembox" style="width:{{windowWidth-60}}px;height:{{item.id>3?260:200}}rpx" wx:for="{{itemlist}}" wx:key>
+      <view>
+        <view class="sibox_title" wx:if="{{item.id==0}}">电阻</view>
+        <view class="sibox_title" wx:elif="{{item.id==1}}">电压源</view>
+        <view class="sibox_title" wx:elif="{{item.id==2}}">电流源</view>
+        <view class="sibox_title" wx:elif="{{item.id==3}}">有伴电压源</view>
+        <view class="sibox_title" wx:elif="{{item.id==4}}">电压控制电压</view>
+        <view class="sibox_title" wx:elif="{{item.id==5}}">电压控制电流</view>
+        <view class="sibox_title" wx:elif="{{item.id==6}}">电流控制电压</view>
+        <view class="sibox_title" wx:elif="{{item.id==7}}">电流控制电流</view>
+      </view>
+      <view>
+        <view class="sibox_num" wx:if="{{item.id==0}}">{{item.num}} Ω</view>
+        <view class="sibox_num" wx:elif="{{item.id==1}}">{{item.num}} V</view>
+        <view class="sibox_num" wx:elif="{{item.id==2}}">{{item.num}} A</view>
+        <view class="sibox_num" wx:elif="{{item.id==3}}">{{item.num1}} Ω {{item.num2}} V</view>
+        <view class="sibox_num" wx:else="{{item.id==3}}">{{item.num}}</view>
+      </view>
+      <view class="sibox_nodeidbox">
+       <view class="sibox_nodeid">起始结点:{{item.nodestart}}</view>
+       <view class="sibox_nodeid">结束结点:{{item.nodeend}}</view>
+      </view>
+      <view wx:if="{{item.id>3}}" class="sibox_nodeidbox">
+       <view class="sibox_nodeid">控制起始结点:{{item.knodestart}}</view>
+       <view class="sibox_nodeid">控制结束结点:{{item.knodeend}}</view>
+      </view>
+    </view>
+  </scroll-view>
+  <button form-type="submit" class="startcal_btn">计算</button>
+</view>
 </form>
-<view wx:if="{{currentid==3}}">
-  <view wx:for="{{result}}" wx:key>{{item}}</view>
+<view wx:if="{{currentid==3}}" class="startbox" style="height:{{windowHeight}}px;width:{{windowWidth}};justify-content:flex-start;">
+  <view class="blank"></view>
+  <view wx:for="{{result}}" wx:key class="resultsinglebox">
+    <view class="resultsingle">
+      结点{{index+1}}的电压为：{{item}}V
+    </view>
+  </view>
+  <view class="switchtab">
+    <view class="tab" data-tabid="0" bindtap="changetab" style="background-color:{{tab==0?'rgb(0, 162, 255)':''}};border-top-right-radius:10px;">支路电压</view>
+    <view class="tab" data-tabid="1" bindtap="changetab" style="background-color:{{tab==1?'rgb(0, 162, 255)':''}};border-top-left-radius:10px;">戴维宁等效电路</view>
+  </view>
+  <form bindsubmit="littlecal" wx:if="{{tab==0}}">
+    <view class="littlecalbox">
+      <view class="caltitle">结点</view>
+      <view class="calinputbox">
+        <input class="calinput" name="nodestart"></input>
+      </view>
+      <view class="calicon">-</view>
+      <view class="caltitle">结点</view>
+      <view class="calinputbox">
+        <input class="calinput" name="nodeend"></input>
+      </view>
+      <view class="calicon">=</view>
+      <view class="calanswerbox">
+        <view class="calanswer">{{littlecalanswer}}</view>
+      </view>
+    </view>
+    <button class="littlecal_btn" form-type="submit">计算</button>
+  </form>
+  <form bindsubmit="thevenin" wx:if="{{tab==1}}">
+    <view class="littlecalbox">
+      <view class="t_caltitle">起始结点</view>
+      <view class="calinputbox">
+        <input class="calinput" name="nodestart"></input>
+      </view>
+      <view class="t_caltitle">终止结点</view>
+      <view class="calinputbox">
+        <input class="calinput" name="nodeend">s</input>
+      </view>
+    </view>
+    <view class="thevebox">
+      <view class="t_caltitle">等效电压</view>
+      <view class="calinputbox">
+        <view class="t_calinput" name="nodestart">{{Uoc}}</view>
+      </view>
+      <view class="t_caltitle">等效电阻</view>
+      <view class="calinputbox">
+        <view class="t_calinput" name="nodeend">{{Req}}</view>
+      </view>
+    </view>
+    <button class="littlecal_btn" form-type="submit">计算</button>
+  </form>
+  
+  <button bindtap="again" class="again">继续计算</button>
 </view>
